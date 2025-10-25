@@ -4,14 +4,11 @@
   "description": "Backend for Daniyaal Perfumery e-commerce website",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed:all"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Pinnate Technologies",
   "license": "ISC",
-
   "dependencies": {
     "axios": "^1.12.2",
     "bcryptjs": "^3.0.2",
@@ -25,7 +22,6 @@
     "sequelize": "^6.37.7",
     "uuid": "^13.0.0"
   },
-  
   "devDependencies": {
     "eslint": "^9.38.0",
     "nodemon": "^3.1.10"
