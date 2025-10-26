@@ -1,43 +1,46 @@
-'use strict';
+const sequelize = require("./src/config/sequelize");
+const User = require("./src/models/user.model");
+const Product = require("./src/models/product.model");
+const Category = require("./src/models/category.model");
+const Cart = require("./src/models/cart.model");
+const CartItem = require("./src/models/cartItem.model");
+const Order = require("./src/models/order.model");
+const OrderItem = require("./src/models/orderItem.model");
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const process = require('process');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
+// category - product
+Category.hasMany(Product, { foreignKey: 'categoryId', as: 'products' });
+Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' });
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+// user - cart
+User.hasOne(Cart, { foreignKey: 'userId', as: 'cart' });
+Cart.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
+// cart - cartItem
+Cart.hasMany(CartItem, { foreignKey: 'cartId', as: 'cartItems' });
+CartItem.belongsTo(Cart, { foreignKey: 'cartId', as: 'cart' });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+// product - cartItem
+Product.hasMany(CartItem, { foreignKey: 'productId', as: 'cartItems' });
+CartItem.belongsTo(Product, { foreignKey: 'productId', as: 'product' });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+// user - order
+User.hasMany(Order, { foreignKey: 'userId', as: 'orders' });
+Order.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
-module.exports = db;
+// order - orderItem
+Order.hasMany(OrderItem, { foreignKey: 'orderId', as: 'orderItems' });
+OrderItem.belongsTo(Order, { foreignKey: 'orderId', as: 'order' });
+
+// product - orderItem
+Product.hasMany(OrderItem, { foreignKey: 'productId', as: 'orderItems' });
+OrderItem.belongsTo(Product, { foreignKey: 'productId', as: 'product' });
+module.exports = {
+  sequelize,
+  User,
+  Product,
+  Category,
+  Cart,
+  CartItem,
+  Order,
+  OrderItem
+};
