@@ -2,11 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const sequelize = require("./config/sequelize");
+const productRoutes = require("./routes/product.routes");
+const categoryRoutes = require("./routes/category.routes");
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
 app.use(express.json());
 
 // test route
