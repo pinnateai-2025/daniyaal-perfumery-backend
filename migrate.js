@@ -8,13 +8,19 @@ const Order = require("./src/models/order.model");
 const OrderItem = require("./src/models/orderItem.model");
 
 
+
 (async () => {
   try {
-    await sequelize.sync({ alter: true }); // or { force: true } to reset tables
-    console.log("✅ Database synced successfully!");
+    console.log("🧹 Dropping all tables...");
+    await sequelize.drop(); // drops all tables
+
+    console.log("🔄 Recreating tables...");
+    await sequelize.sync({ force: true }); // recreates them
+
+    console.log("✅ Database reset and synced successfully!");
     process.exit();
   } catch (err) {
-    console.error("❌ DB sync error:", err);
+    console.error("❌ DB reset error:", err);
     process.exit(1);
   }
 })();

@@ -1,11 +1,11 @@
-const sequelize = require("./src/config/sequelize");
-const User = require("./src/models/user.model");
-const Product = require("./src/models/product.model");
-const Category = require("./src/models/category.model");
-const Cart = require("./src/models/cart.model");
-const CartItem = require("./src/models/cartItem.model");
-const Order = require("./src/models/order.model");
-const OrderItem = require("./src/models/orderItem.model");
+const sequelize = require("../config/sequelize");
+const User = require("../models/user.model");
+const Product = require("../models/product.model");
+const Category = require("../models/category.model");
+const Cart = require("../models/cart.model");
+const CartItem = require("../models/cartItem.model");
+const Order = require("../models/order.model");
+const OrderItem = require("../models/orderItem.model");
 
 // category - product
 Category.hasMany(Product, { foreignKey: 'categoryId', as: 'products' });

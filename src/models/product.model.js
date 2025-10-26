@@ -3,9 +3,9 @@ const sequelize = require("../config/sequelize");
 
 const Product = sequelize.define("Product", {
   id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
   },
 
   name: {
@@ -28,14 +28,9 @@ const Product = sequelize.define("Product", {
     allowNull: false,
   },
 
-  category: {
-    type: DataTypes.STRING,
-    defaultValue: 0,
-  },
-
   imageUrl: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 
   categoryId: {
@@ -45,7 +40,7 @@ const Product = sequelize.define("Product", {
 
   size: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 
   fragranceNotes: {

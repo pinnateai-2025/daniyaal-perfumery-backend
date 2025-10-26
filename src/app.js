@@ -9,9 +9,11 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use(express.json());
 
 // test route
 app.get("/", (req, res) => res.send("Daniyaal Perfumery Backend is running..."));
