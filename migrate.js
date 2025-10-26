@@ -1,6 +1,12 @@
 const sequelize = require("./src/config/sequelize");
 const User = require("./src/models/user.model");
 const Product = require("./src/models/product.model");
+const Category = require("./src/models/category.model");
+const cart = require("./src/models/cart.model");
+const CartItem = require("./src/models/cartItem.model");
+const Order = require("./src/models/order.model");
+const OrderItem = require("./src/models/orderItem.model");
+
 
 (async () => {
   try {
