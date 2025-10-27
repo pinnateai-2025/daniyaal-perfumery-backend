@@ -5,6 +5,7 @@ const sequelize = require("./config/sequelize");
 const authRoutes = require("./routes/auth.route");
 const productRoutes = require("./routes/product.route");
 const categoryRoutes = require("./routes/category.route");
+const cartRoutes = require("./routes/cart.route");
 
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/cart", cartRoutes);
 
 
 // test route

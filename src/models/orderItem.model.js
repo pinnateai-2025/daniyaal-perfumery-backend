@@ -2,17 +2,22 @@ const {DataTypes} = require('sequelize');
 const sequelize = require('../config/sequelize');
 
 const orderItem = sequelize.define('OrderItem', {
+  // id: {
+  //   type: DataTypes.UUID,
+  //   defaultValue: DataTypes.UUIDV4,
+  //   primaryKey: true,
+  // },
   id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
   },
   orderId: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   productId: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   quantity: {

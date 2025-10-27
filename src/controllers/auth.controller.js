@@ -6,8 +6,6 @@ const {User} = require("../models");
 exports.register = async (req, res) => {
   try {
     const {name, email, password, phone, address, role} = req.body;
-    console.log(req.body);
-
 
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) return res.status(400).json({ error: 'Email already registered' });
