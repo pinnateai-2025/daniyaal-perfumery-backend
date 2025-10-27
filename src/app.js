@@ -6,6 +6,7 @@ const authRoutes = require("./routes/auth.route");
 const productRoutes = require("./routes/product.route");
 const categoryRoutes = require("./routes/category.route");
 const cartRoutes = require("./routes/cart.route");
+const orderRoutes = require("./routes/order.route");
 
 
 dotenv.config();
@@ -16,9 +17,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/categories", categoryRoutes);
+app.use("/api/product", productRoutes);
+app.use("/api/category", categoryRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/order", orderRoutes);
 
 
 // test route
