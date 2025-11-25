@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const sequelize = require("./config/sequelize");
+const adminRoutes = require("./routes/admin.route")
 const authRoutes = require("./routes/auth.route");
 const productRoutes = require("./routes/product.route");
 const categoryRoutes = require("./routes/category.route");
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/category", categoryRoutes);
