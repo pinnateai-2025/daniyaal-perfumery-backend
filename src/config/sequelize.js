@@ -8,7 +8,13 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "mysql",
-    logging: false,
+    logging: (msg) => {
+      if (msg.startsWith("Executing (default): SELECT 1+1")) return;
+      if (msg.includes("ERROR")) console.error(msg);
+    },
+    define: {
+      underscored: false
+    }
   }
 );
 

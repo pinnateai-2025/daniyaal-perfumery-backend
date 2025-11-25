@@ -1,38 +1,61 @@
-const {DataTypes} = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Order = sequelize.define("Order", {
-  // id: {
-  //   type: DataTypes.UUID,
-  //   defaultValue: DataTypes.UUIDV4,
-  //   primaryKey: true,
-  // },
+const Order = sequelize.define(
+  "Order",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
 
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "userId",
+    },
 
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+    totalAmount: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      field: "totalAmount",
+    },
+
+    payment_status: {
+      type: DataTypes.ENUM("pending", "paid", "failed"),
+      allowNull: false,
+      defaultValue: "pending",
+      field: "payment_status",
+    },
+
+    order_status: {
+      type: DataTypes.ENUM(
+        "pending",
+        "processing",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ),
+      allowNull: false,
+      defaultValue: "pending",
+      field: "order_status",
+    },
+
+    createdAt: {
+      type: DataTypes.DATE,
+      field: "createdAt",
+    },
+
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: "updatedAt",
+    },
   },
-  totalAmount: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-  },
-  payment_status: { 
-    type: DataTypes.ENUM("pending","paid","failed"), 
-    defaultValue: "pending" 
-},
-  order_status: { 
-    type: DataTypes.ENUM("pending","processing","shipped","delivered","cancelled"), 
-    defaultValue: "pending" 
-}
-}, {
-  tableName: "orders",
-  timestamps: true,
-});
+  {
+    tableName: "orders",
+    timestamps: true,
+  }
+);
 
 module.exports = Order;
