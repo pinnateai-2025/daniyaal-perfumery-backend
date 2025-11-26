@@ -34,4 +34,16 @@ sequelize
   .then(() => console.log("✅ Database connected"))
   .catch((err) => console.error("❌ DB connection error:", err));
 
+// must be placed after all routes in app.js
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  const message = err && err.message ? err.message : String(err);
+  const status = err.status || 500;
+  res.status(status).json({
+    error: message,
+    ...(process.env.NODE_ENV !== 'production' ? { stack: err.stack } : {})
+  });
+});
+
+
 module.exports = app;
