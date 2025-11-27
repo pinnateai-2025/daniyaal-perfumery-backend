@@ -8,6 +8,7 @@ const productRoutes = require("./routes/product.route");
 const categoryRoutes = require("./routes/category.route");
 const cartRoutes = require("./routes/cart.route");
 const orderRoutes = require("./routes/order.route");
+const paymentRoutes = require("./routes/payment.route");
 
 
 dotenv.config();
@@ -23,7 +24,7 @@ app.use("/api/product", productRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
-
+app.use("/api/payment", paymentRoutes);
 
 // test route
 app.get("/", (req, res) => res.send("Daniyaal Perfumery Backend is running..."));
