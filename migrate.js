@@ -11,8 +11,8 @@ const OrderItem = require("./src/models/orderItem.model");
 
 (async () => {
   try {
-    // console.log("🧹 Dropping all tables...");
-    // await sequelize.drop(); // drops all tables
+  //   console.log("🧹 Dropping all tables...");
+  //   await sequelize.drop(); // drops all tables
 
   //   console.log("🔄 Recreating tables...");
   //   await sequelize.sync({ force: true }); // recreates them
